@@ -33,8 +33,11 @@
 </div>
 
 <style>
-  .macro {
+  .button {
     width: 8rem;
     margin-left: 5rem;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
   }
 </style>

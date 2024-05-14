@@ -138,20 +138,6 @@
 </div>
 
 <style>
-.audio-level-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
-.button {
-  width: 6rem;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-
   ol {
     list-style: None;
     display: flex;
