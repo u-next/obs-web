@@ -1,6 +1,7 @@
 <script>
   import { onMount, onDestroy } from 'svelte';
   import { obs, sendCommand } from './obs.js';
+  import MacroButtons from './MacroButtons.svelte';
 
   onMount(async () => {
     const data = await sendCommand('GetProfileList')
@@ -85,50 +86,8 @@
 
 
 <div class="mixer">
-  <div class="audio-level-buttons px-6 my-5">
-    {#each audioButtons as audioButton}
-    <button class="button is-warning has-text-dark"
-      on:click={async () => {
-        await sendCommand('CallVendorRequest', {
-          'vendorName': 'AdvancedSceneSwitcher',
-          "requestType": "AdvancedSceneSwitcherMessage",
-          "requestData": 
-          {"message": `switch-is`}
-        })
+  <MacroButtons />
 
-        await sendCommand('CallVendorRequest', {
-          'vendorName': 'AdvancedSceneSwitcher',
-          "requestType": "AdvancedSceneSwitcherMessage",
-          "requestData": 
-          {"message": `is-audio ${audioButton}`}
-        })
-      }}
-      >IS {audioButton}</button>
-    {/each}
-  </div>
-
-  <div class="audio-level-buttons px-6">
-    {#each audioButtons as audioButton}
-    <button class="button is-info has-text-white"
-      on:click={async () => {
-        await sendCommand('CallVendorRequest', {
-          'vendorName': 'AdvancedSceneSwitcher',
-          "requestType": "AdvancedSceneSwitcherMessage",
-          "requestData": 
-          {"message": `switch-pg`}
-        })
-
-        await sendCommand('CallVendorRequest', {
-          'vendorName': 'AdvancedSceneSwitcher',
-          "requestType": "AdvancedSceneSwitcherMessage",
-          "requestData": 
-            {"message": `pg-audio ${audioButton}`}
-        })
-      }}
-      >PG {audioButton}</button>
-    {/each}
-  </div>
-  
   <ol class="mt-5">
     {#if inputs && Object.keys(inputs).length > 0}
       {#each Object.keys(inputs).sort() as iname}

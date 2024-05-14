@@ -4,11 +4,11 @@
 
   const overlaySystemPrefix = 'https://tatooine-e1db8.web.app/'
   const overlaySystemControllerPrefix = '/controller'
-  const overlaySystemPreviewPrefix = '/previewSync/'
+  const overlaySystemPreviewPrefix = '/presetSync/'
   export let overlayId
   let overlayPreviewUrl
   let overlayControllerUrl
-  let previewIdArray = [1,2,3,4,5,6,7,8,9,10,11,12]
+  let previewIdArray = [1,2,3,4,5,6,7,8]
   let currentPreviewId = 1
   let isOverlayIdActive
 
@@ -32,10 +32,10 @@
 {#if isOverlayIdActive}
   <div class="columns pb-0">
     <div class="column is-three-fifths">
-      <div class="buttons is-left">
+      <div class="buttons">
         {#each previewIdArray as previewId}
           <button class="button is-info"
-          on:click={() => setCurrentPreviewId(previewId)}>プレビュー {previewId}</button>
+          on:click={() => setCurrentPreviewId(previewId)}>プリセット {previewId}</button>
           {/each}
       </div>
 
@@ -53,9 +53,15 @@
         title="Overlay Control"
         src={overlayControllerUrl}
         width="500"
-        height="1400"></iframe>
+        height="1250"></iframe>
     </div>
   </div>
 {:else}
   <IdSetupMenu overlayId = {overlayId}/>
 {/if}
+
+<style>
+  .button{
+    margin-left: 60px;
+  }
+</style>

@@ -122,7 +122,7 @@
   let activeControlTab
   let overlayId
   
-  $: [address, password, displayName] = connectionPreset.split(' ')
+  $: [displayName, address, password] = connectionPreset.split(' ')
 
   $: isIconMode
     ? window.localStorage.setItem('isIconMode', 'true')
@@ -549,13 +549,14 @@
       <form on:submit|preventDefault={connect}>
         <p class="has-text-white">プリセット</p>
         <div class="field is-grouped">
-          <div class="select">
+           <div class="select">
             <select bind:value={connectionPreset}>
-              <option selected>ws://Avalon-501:4455  PRIMARY</option>
-              <option>ws://Avalon-502:4455  BACKUP</option>
-              <option>ws://Avalon-503:4455  PRIMARY</option>
-              <option>ws://Avalon-504:4455  BACKUP</option>
-              <option>ws://10.231.102.227:4455  DEV</option>
+              <option selected>501-PRIMARY ws://Avalon-501:4455Y  </option>
+              <option>501-BACKUP ws://Avalon-502:4455  </option>
+              <option>502-PRIMARY ws://Avalon-503:4455  </option>
+              <option>502-BACKUP ws://Avalon-504:4455  </option>
+              <option>DEV ws://10.231.102.227:4455  </option>
+              <option>LOCAL ws://localhost:4455  </option>
             </select>
           </div>
         </div>
