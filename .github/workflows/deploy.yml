@@ -41,4 +41,4 @@ jobs:
   
         - name: Sync files to S3
           run: |
-            aws s3 sync ./public s3://${{ secrets.AWS_BUCKET_NAME }}/avalonweb-dev --delete
+            aws s3 sync ./public s3://${{ secrets.AWS_BUCKET_NAME }}/avalonweb-dev --acl public-read --delete
