@@ -685,5 +685,5 @@
 </section>
 
 <footer class="footer has-background-black-ter">
-  <div class="has-text-right has-text-white">Version: avalon_live_20240524</div>
+  <div class="has-text-right has-text-white">Version: avalon_live_20240528</div>
 </footer>
