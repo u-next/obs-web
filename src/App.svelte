@@ -40,7 +40,6 @@
   import StreamDestinationInput from './StreamDestinationInput.svelte';
   import OverlayController from './OverlayController.svelte';
   import ControlTab from './ControlTab.svelte';
-  import IdSetupMenu from './IdSetupMenu.svelte';
 
   onMount(async () => {
     if ('serviceWorker' in navigator) {
