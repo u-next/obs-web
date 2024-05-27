@@ -1,9 +1,9 @@
-name: '[PROD] Build and Deploy to S3'
+name: '[DEV] Build and Deploy to S3'
 
 on:
   push:
     branches:
-      - feature/megurostudio
+      - feature/megurostudio-dev
 
 permissions:
     id-token: write
@@ -41,4 +41,4 @@ jobs:
   
         - name: Sync files to S3
           run: |
-            aws s3 sync ./public s3://${{ secrets.AWS_BUCKET_NAME }}/avalonweb --acl public-read --delete
+            aws s3 sync ./public s3://${{ secrets.AWS_BUCKET_NAME }}/avalonweb-dev --acl public-read --delete
