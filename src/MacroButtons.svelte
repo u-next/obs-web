@@ -20,7 +20,7 @@
 <div class="buttons has-text-centered px-6 my-5">
   {#each macroCommandArray as macroCommand}
     <button
-      class="macro button has-text-dark is-medium {macroCommand.includes('pg-audio') ? 'is-info' : 'is-warning'}"
+      class="macro button has-text-dark ml-1 is-medium {macroCommand.includes('pg-audio') ? 'is-info' : 'is-warning'}"
       on:click={async () => {
         await sendCommand('CallVendorRequest', {
           vendorName: 'AdvancedSceneSwitcher',
@@ -35,7 +35,6 @@
 <style>
   .button {
     width: 8rem;
-    margin-left: 5rem;
     justify-content: center;
     align-items: center;
     text-align: center;

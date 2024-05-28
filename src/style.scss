@@ -20,6 +20,10 @@ $section-padding-desktop: 0.5rem 0.5rem;
   }
 }
 
+html {
+  background-color: hsl(0, 0%, 14%);
+}
+
 .rotate {
   animation: rotating 10s linear infinite;
 }
@@ -39,9 +43,8 @@ $section-padding-desktop: 0.5rem 0.5rem;
 body {
   width: auto;
   min-height: 1440px;
-  background-color: hsl(0, 0%, 14%);
 }
 
 #main-body{
-  min-height: 1440px;
+  min-height: 1000px;
 }
