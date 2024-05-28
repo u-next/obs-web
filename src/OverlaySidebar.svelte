@@ -17,4 +17,4 @@
   title="Overlay Control Sidebar"
   src={overlayControllerUrl}
   width="500"
-  height="1400"></iframe>
+  height="1250"></iframe>
