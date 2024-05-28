@@ -455,7 +455,7 @@
         <div class="buttons">
           <!-- svelte-ignore a11y-missing-attribute -->
           {#if connected}
-            {#if avalonMode === 'operator'}
+            {#if avalonMode === 'operator'} <!-- Avalon O -->
               <ProfileSelect uiLock={isLocked} />
               <FramerateSelect uiLock={isLocked} />
               <SceneCollectionSelect uiLock={isLocked} />
@@ -602,8 +602,9 @@
             {/if}
           </div>
 
-          <div class="column is-three-fifths">
+          <div class="column">
             <ProgramPreview {imageFormat} />
+            <MacroButtons />
             {#if overlayId}
               <OverlayPreviews
                 {overlaySystemUrl}
@@ -611,10 +612,6 @@
                 {overlayId}
               />
             {/if}
-          </div>
-
-          <div class="column">
-            <MacroButtons />
           </div>
         </div>
       {/if}
@@ -684,6 +681,6 @@
   </div>
 </section>
 
-<footer class="footer has-background-black-ter">
+<footer class="footer my-3 mx-2 p-0 has-background-black-ter">
   <div class="has-text-right has-text-white">Version: avalon_live_20240528</div>
 </footer>
