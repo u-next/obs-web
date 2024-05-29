@@ -624,7 +624,7 @@
         <div class="field is-grouped">
           <div class="select">
             <select bind:value={connectionPreset}>
-              <option selected>501-PRIMARY ws://Avalon-501:4455Y </option>
+              <option selected>501-PRIMARY ws://Avalon-501:4455 </option>
               <option>501-BACKUP ws://Avalon-502:4455 </option>
               <option>502-PRIMARY ws://Avalon-503:4455 </option>
               <option>502-BACKUP ws://Avalon-504:4455 </option>
