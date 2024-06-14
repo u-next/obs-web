@@ -4,9 +4,6 @@
   import MacroButtons from './MacroButtons.svelte';
 
   onMount(async () => {
-    const data = await sendCommand('GetProfileList')
-    console.log(data)
-
     sendCommand('GetInputList').then((data) => {
       // console.log('Mixer GetInputList', data);
       for (let i = 0; i < data.inputs.length; i++) {
@@ -25,6 +22,18 @@
             };
           }
         });
+
+        sendCommand('GetInputAudioSyncOffset', {
+          inputName: data.inputs[i].inputName,
+        }).then((offset) => {
+          // console.log('Mixer GetInputAudioSyncOffset', offset);
+          if ( "inputAudioSyncOffset" in offset) {;
+            inputs[data.inputs[i].inputName] = {
+              ...inputs[data.inputs[i].inputName],
+              ...offset,
+            };
+          }
+        });
       }
     });
   });
@@ -32,8 +41,6 @@
   onDestroy(() => {});
 
   let inputs = {};
-
-  const audioButtons = ['+ 6', '+ 3', '= 0', '- 3', '- 6']
 
   obs.on('StudioModeStateChanged', async (data) => {
     console.log('Mixer StudioModeStateChanged', data.studioModeEnabled);
@@ -48,6 +55,13 @@
   });
 
   obs.on('InputVolumeChanged', async (data) => {
+    // console.log('Mixer InputVolumeChanged', data)
+    if (inputs[data.inputName]) {
+      inputs[data.inputName] = { ...inputs[data.inputName], ...data };
+    }
+  });
+
+  obs.on('InputAudioSyncOffsetChanged', async (data) => {
     // console.log('Mixer InputVolumeChanged', data)
     if (inputs[data.inputName]) {
       inputs[data.inputName] = { ...inputs[data.inputName], ...data };
@@ -82,6 +96,21 @@
       inputVolumeDb: parseFloat(newVolume),
     });
   }
+
+  async function updateSyncOffset(input) {    
+    // console.log('updateSyncOffset', input)
+
+    try {
+      await sendCommand('SetInputAudioSyncOffset', {
+      inputName: input.inputName,
+      inputUuid: input.inputUuid,
+      inputAudioSyncOffset: parseFloat(input.inputAudioSyncOffset)
+    })
+      alert('遅延値を更新しました。')
+    } catch (error) {
+      alert('エラー: 遅延値の更新は失敗しました。')
+    }
+  }
 </script>
 
 
@@ -96,17 +125,7 @@
             <span class="tag is-dark is-small mixer-label"
               >{inputs[iname].inputName}</span
             >
-            <input
-              orient="vertical"
-              class="slider mixer-slider"
-              step="0.1"
-              min="-60"
-              max="12"
-              value={inputs[iname].inputVolumeDb}
-              type="range"
-              on:input={updateVolume}
-              name={inputs[iname].inputName}
-            />
+
             <div class="buttons are-small mixer-buttons">
               <button
                 class="button is-white is-outlined"
@@ -124,13 +143,31 @@
                 >-1</button
               >
             </div>
+            
+            <input
+              orient="vertical"
+              class="slider mixer-slider"
+              step="0.1"
+              min="-60"
+              max="12"
+              value={inputs[iname].inputVolumeDb}
+              type="range"
+              on:input={updateVolume}
+              name={inputs[iname].inputName}
+            />
           </div>
-          <span
-            class="tag is-info is-small is-marginless is-centered has-background-dark mixer-value"
+
+          <span class="tag is-info is-small is-marginless is-centered has-background-dark mixer-value"
             >{typeof inputs[iname].inputVolumeDb === 'number'
               ? inputs[iname].inputVolumeDb.toFixed(1)
               : inputs[iname].inputVolumeDb} dB
           </span>
+
+          <div class="has-text-white">
+            <p class="mb-1">遅延値</p>
+              <input class="input is-info mb-1" type="text" bind:value={inputs[iname].inputAudioSyncOffset}/>  ms
+              <button class="button is-warning" on:click={updateSyncOffset(inputs[iname])}>更新</button>
+          </div>
         </li>
       {/each}
     {/if}
@@ -162,7 +199,7 @@
     position: absolute;
     top: 0;
     right: 0rem;
-    width: 1rem;
+    width: 1.5rem;
   }
   .mixer-label {
     position: absolute;
@@ -170,4 +207,10 @@
     left: 0.5rem;
     transform: rotate(90deg);
   }
+  
+  .input.is-info {
+    border-radius: 4px;
+    width: 80px;
+  }
+
 </style>

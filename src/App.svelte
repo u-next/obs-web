@@ -624,7 +624,7 @@
         <div class="field is-grouped">
           <div class="select">
             <select bind:value={connectionPreset}>
-              <option selected>501-PRIMARY ws://Avalon-501:4455Y </option>
+              <option selected>501-PRIMARY ws://Avalon-501:4455 </option>
               <option>501-BACKUP ws://Avalon-502:4455 </option>
               <option>502-PRIMARY ws://Avalon-503:4455 </option>
               <option>502-BACKUP ws://Avalon-504:4455 </option>
@@ -682,5 +682,5 @@
 </section>
 
 <footer class="footer my-3 mx-2 p-0 has-background-black-ter">
-  <div class="has-text-right has-text-white">Version: avalon_live_20240528</div>
+  <div class="has-text-right has-text-white">Version: avalon_web_20240614</div>
 </footer>
