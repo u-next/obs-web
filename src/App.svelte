@@ -682,5 +682,5 @@
 </section>
 
 <footer class="footer my-3 mx-2 p-0 has-background-black-ter">
-  <div class="has-text-right has-text-white">Version: avalon_web_20240614</div>
+  <div class="has-text-right has-text-white">Version: avalon_web_20240626</div>
 </footer>

@@ -2,18 +2,18 @@
   import { onMount } from 'svelte';
   import { obs, sendCommand } from './obs.js';
 
+  let macroCommandArray = [];
+
   onMount(async () => {
     await sendCommand('CallVendorRequest', {
       vendorName: 'AdvancedSceneSwitcher',
       requestType: 'AdvancedSceneSwitcherMessage',
       requestData: { message: 'get-macro-list' },
     });
-  });
 
-  let macroCommandArray = [];
-
-  obs.on('VendorEvent', async (data) => {
-    macroCommandArray = ('VendorEvent', data.eventData.message).split(',');
+    obs.once('VendorEvent', async (data) => {
+      macroCommandArray = ('VendorEvent', data.eventData.message).split(',');
+    });
   });
 </script>
 
