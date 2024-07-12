@@ -624,10 +624,10 @@
         <div class="field is-grouped">
           <div class="select">
             <select bind:value={connectionPreset}>
-              <option selected>501-PRIMARY ws://Avalon-501:4455 </option>
-              <option>501-BACKUP ws://Avalon-502:4455 </option>
-              <option>502-PRIMARY ws://Avalon-503:4455 </option>
-              <option>502-BACKUP ws://Avalon-504:4455 </option>
+              <option selected>Avalon-501 ws://Avalon-501:4455 </option>
+              <option>Avalon-502 ws://Avalon-502:4455 </option>
+              <option>Avalon-503 ws://Avalon-503:4455 </option>
+              <option>Avalon-504 ws://Avalon-504:4455 </option>
               <option>DEV ws://10.231.102.227:4455 </option>
               <option>LOCAL ws://localhost:4455 </option>
             </select>
