@@ -628,6 +628,8 @@
               <option>Avalon-502 ws://Avalon-502:4455 </option>
               <option>Avalon-503 ws://Avalon-503:4455 </option>
               <option>Avalon-504 ws://Avalon-504:4455 </option>
+              <option>Avalon-505 ws://Avalon-505:4455 </option>
+              <option>Avalon-506 ws://Avalon-506:4455 </option>
               <option>DEV ws://10.231.102.227:4455 </option>
               <option>LOCAL ws://localhost:4455 </option>
             </select>
@@ -682,5 +684,5 @@
 </section>
 
 <footer class="footer my-3 mx-2 p-0 has-background-black-ter">
-  <div class="has-text-right has-text-white">Version: avalon_web_20240717</div>
+  <div class="has-text-right has-text-white">Version: avalon_web_20240731</div>
 </footer>
