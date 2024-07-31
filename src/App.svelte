@@ -43,6 +43,7 @@
   import OverlaySidebar from './OverlaySidebar.svelte';
   import OverlayPreviews from './OverlayPreviews.svelte';
   import MacroButtons from './MacroButtons.svelte';
+  import Popup from './component/Popup.svelte';
 
   onMount(async () => {
     if ('serviceWorker' in navigator) {
@@ -124,6 +125,7 @@
   let activeControlTab;
   let overlayId;
   let avalonMode = '';
+  let showPopup = false;
 
   // Overlay System Related
   const overlaySystemUrl = 'https://tatooine-e1db8.web.app/';
@@ -179,6 +181,11 @@
     connect();
   }
 
+  function cancelPopup() {
+    showPopup = false;
+  }
+
+
   function extractIdFromURL(url) {
     return url.substring(overlaySystemUrl.length);
   }
@@ -205,7 +212,12 @@
   }
 
   async function stopStream() {
+    showPopup = true;
+  }
+
+  async function confirmStopStream() {
     await sendCommand('StopStream');
+    showPopup = false;
   }
 
   async function startRecording() {
@@ -469,6 +481,7 @@
                   <span class="icon"><Icon path={mdiAccessPointOff} /></span>
                   <span>{formatTime(heartbeat.streaming.outputDuration)}</span>
                 </button>
+                <Popup show={showPopup} onConfirm={confirmStopStream} onCancel={cancelPopup} />
               {:else}
                 <button
                   class="button is-danger is-light {isLocked
