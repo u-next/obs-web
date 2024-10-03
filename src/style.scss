@@ -1,8 +1,15 @@
 @charset "utf-8";
 
 $footer-padding: 3rem 1.5rem;
+$family-primary: monospace;
+$dropdown-menu-min-width: 24rem;
+$section-padding: 0.5rem 0.5rem;
+$section-padding-desktop: 0.5rem 0.5rem;
+
 
 @import "~bulma/bulma.sass";
+@import "~bulma-slider/src/sass/index.sass";
+
 
 @keyframes rotating {
   from {
@@ -13,6 +20,31 @@ $footer-padding: 3rem 1.5rem;
   }
 }
 
+html {
+  background-color: hsl(0, 0%, 14%);
+}
+
 .rotate {
   animation: rotating 10s linear infinite;
+}
+
+.is-locked {
+  opacity: 50%;
+  pointer-events: none;
+}
+
+.logo {
+  margin: auto;
+  padding-left: 0.75rem;
+  width: auto;
+  height: 60%;
+}
+
+body {
+  width: auto;
+  min-height: 1440px;
+}
+
+#main-body{
+  min-height: 1000px;
 }
