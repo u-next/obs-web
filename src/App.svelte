@@ -101,12 +101,12 @@
     window.sendCommand = sendCommand;
   });
 
-  // State
   let connected;
   let heartbeat = {};
   let heartbeatInterval;
   let isFullScreen;
   let isStudioMode;
+  let isSceneOnTop = window.localStorage.getItem('isSceneOnTop') || false
   let isVirtualCamActive;
   let isIconMode = window.localStorage.getItem('isIconMode') || false;
   let isReplaying;
@@ -133,6 +133,10 @@
   const overlaySystemPreviewPrefix = '/presetSync/';
 
   $: [displayName, address, password] = connectionPreset.split(' ');
+
+  $: isSceneOnTop
+    ? window.localStorage.setItem('isSceneOnTop', 'true')
+    : window.localStorage.removeItem('isSceneOnTop')
 
   $: isIconMode
     ? window.localStorage.setItem('isIconMode', 'true')
